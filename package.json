@@ -1,0 +1,76 @@
+{
+  "name": "code-garden",
+  "displayName": "Code Garden 🌱",
+  "description": "A plant that grows as you code! Watch your garden transform from a seedling into a mighty tree.",
+  "version": "1.0.0",
+  "publisher": "code-garden",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "plant",
+    "gamification",
+    "productivity",
+    "fun",
+    "garden"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "icon": "media/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeGarden.openGarden",
+        "title": "🌱 Open Code Garden",
+        "category": "Code Garden"
+      },
+      {
+        "command": "codeGarden.resetGarden",
+        "title": "🔄 Reset Garden",
+        "category": "Code Garden"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeGarden",
+          "title": "Code Garden",
+          "icon": "media/plant-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codeGarden": [
+        {
+          "type": "webview",
+          "id": "codeGarden.gardenView",
+          "name": "Your Garden"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Code Garden",
+      "properties": {
+        "codeGarden.linesPerStage": {
+          "type": "number",
+          "default": 50,
+          "description": "Lines of code needed to advance to next growth stage"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "node build.js",
+    "build": "node build.js",
+    "package": "npm run build && npx vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "esbuild": "^0.20.0"
+  }
+}
